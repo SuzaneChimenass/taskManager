@@ -1,9 +1,15 @@
 import { View, Text, ImageBackground, StyleSheet } from "react-native";
+import todayImage from '../../assets/imgs/today.jpg'
 
 export default function TaskList(){
     return(
         <View style={styles.container}>
-            <ImageBackground source={{}} style={styles.background}>
+            <ImageBackground source={todayImage} style={styles.background}>
+                
+                <View style={styles.titleBar}>
+                    <Text style={styles.title}>Hoje</Text>
+                    <Text style={styles.subtitle}>24 de Fevereiro</Text>
+                </View>
 
             </ImageBackground>
 
@@ -20,10 +26,24 @@ const styles = StyleSheet.create({
     },
     background: {
         flex: 3,
-        backgroundColor: '#acfb698'
     },
     taskList: {
         flex: 7,
-        backgroundColor:'ff5d57'
+    },
+    titleBar: {
+        flex:1,
+        justifyContent:'flex-end'
+    },
+    title:{
+        color:'white',
+        fontSize:50,
+        marginLeft:20,
+        marginBottom:20
+    },
+    subtitle: {
+        color:'white',
+        fontSize:20,
+        marginLeft:20,
+        marginBottom:30
     }
 })
