@@ -2,4 +2,4 @@ git config --global user.name SuzaneChimenass
 git config --global user.email suzanecamila879@gmail.com
 
 npm i 
-npm run android
+npm run android ou npm run web
