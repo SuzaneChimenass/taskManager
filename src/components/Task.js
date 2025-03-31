@@ -5,19 +5,21 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default props => {
 
+    const doneOrNotStyle = props.doneAt ? {textDecorationLine: 'line-through'} : {}
+
     const date = props.doneAt ? props.doneAt : props.estimateAt
     const formatteDate = moment(date).tz('America/Sao_Paulo').locale
     ('pt-br').format('ddd, D [de] MMMM')
 
     return (
         <View style={styles.container}>
-            <TouchableWithoutFeedback onPress={() => console.log('status')}>
+            <TouchableWithoutFeedback onPress={() => props.onToggleTask(props.id)}>
                 <View style={styles.checkContainer}>
-                    {getCheckView(new Date())}
+                    {getCheckView(props.doneAt)}
                 </View>
             </TouchableWithoutFeedback>
             <View>
-                <Text style={styles.desc}>{props.desc}</Text>
+                <Text style={[styles.desc, doneOrNotStyle]}>{props.desc}</Text>
                 <Text style={styles.date}>{formatteDate}</Text>
             </View>
         </View>
