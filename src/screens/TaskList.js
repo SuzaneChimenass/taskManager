@@ -46,6 +46,7 @@ export default function TaskList() {
 
     const[visibleTasks, setVisibleTasks] = useState([...tasks])
     const[showDoneTasks, setShowDoneTasks] = useState(true)
+    const[showAddTask, setShowAddTasks] = useState(false)
 
     useEffect(() => {
         filterTasks()
@@ -83,7 +84,7 @@ export default function TaskList() {
 
     return(
         <View style={styles.container}>
-            <AddTask />
+            <AddTask isVisible={showAddTask} onCancel={() => setShowAddTasks(false)} />
             <ImageBackground size={30} source={todayImage} style={styles.background}>
 
                 <View style={styles.iconBar}>
@@ -110,7 +111,7 @@ export default function TaskList() {
 
             <TouchableOpacity style={styles.addButton}
                 activeOpacity={0.7}
-                onPress={() => console.warn("+")}>
+                onPress={() => setShowAddTasks(true)}>
                 
                 <Icon name="plus" size={20} color={"#fff"} />
 
