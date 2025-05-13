@@ -1,4 +1,11 @@
-import { View, Text, ImageBackground, StyleSheet, TouchableOpacity, FlatList } from "react-native"
+import { 
+    View, 
+    Text, 
+    ImageBackground, 
+    StyleSheet, 
+    TouchableOpacity, 
+    FlatList, 
+    Alert } from "react-native"
 
 import moment from 'moment-timezone'
 import 'moment/locale/pt-br'
@@ -51,7 +58,7 @@ export default function TaskList() {
     useEffect(() => {
         filterTasks()
 
-    }, [showDoneTasks])
+    }, [showDoneTasks, tasks])
 
     const toggleTask = (taskId) => {
         const taskList = [...visibleTasks]
@@ -82,9 +89,24 @@ export default function TaskList() {
         setVisibleTasks(visibleTasks)
     }
 
+    const addTask = newTask => {
+        if(!newTask.desc || !newTask.desc.trim()){
+            Alert.alert('Dados inválidos', 'Descrição não informada!')
+            return
+        }
+    const tempTasks = [...tasks]
+    tempTasks.push({
+        id: Math.random(),
+        desc: newTask.desc,
+        estimateAt: newTask.date,
+        doneAt: null
+    })
+    }
+
+
     return(
         <View style={styles.container}>
-            <AddTask isVisible={showAddTask} onCancel={() => setShowAddTasks(false)} />
+            <AddTask isVisible={showAddTask} onCancel={() => setShowAddTasks(false)} onSave={addTask} />
             <ImageBackground size={30} source={todayImage} style={styles.background}>
 
                 <View style={styles.iconBar}>
