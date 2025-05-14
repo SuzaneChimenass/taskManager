@@ -27,7 +27,7 @@ export default function AddTask(props){
 
             <View style={styles.container}>
                 <Text style={styles.header}>Nova Tarefa</Text>
-                <TextInput style={styles.input} placeholder="Informe a descrição" onChange={setDesc} value={desc}/>
+                <TextInput style={styles.input} placeholder="Informe a descrição" onChangeText={setDesc} value={desc}/>
                 
 
                 {Platform.OS === 'android' && (
@@ -44,7 +44,12 @@ export default function AddTask(props){
                     <TouchableOpacity onPress={props.onCancel}>
                         <Text style={styles.button}>Cancelar</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={props.onSave({desc, date})}>
+                    <TouchableOpacity onPress={() => {
+                            props.onSave({desc, date})
+                            setDesc("")
+                            setDate(new Date())
+                        }
+                    }>
                         <Text style={styles.button}>Salvar</Text>
                     </TouchableOpacity>
                 </View>

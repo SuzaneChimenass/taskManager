@@ -94,13 +94,15 @@ export default function TaskList() {
             Alert.alert('Dados inválidos', 'Descrição não informada!')
             return
         }
-    const tempTasks = [...tasks]
-    tempTasks.push({
-        id: Math.random(),
-        desc: newTask.desc,
-        estimateAt: newTask.date,
-        doneAt: null
-    })
+        const tempTasks = [...tasks]
+        tempTasks.push({    
+            id: Math.random(),
+            desc: newTask.desc,
+            estimateAt: newTask.date,
+            doneAt: null
+        })
+        setTasks(tempTasks)
+        setShowAddTasks(false)
     }
 
 
